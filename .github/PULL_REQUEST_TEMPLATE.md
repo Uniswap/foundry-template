@@ -20,15 +20,12 @@ Before deployment
 - [ ] formal verification (when applicable)
 - [ ] deployment or upgrade scripts ready
 - [ ] version management agreed upon and implemented
-- [ ] internal team review
-- [ ] **Security Team review**
 
 After deployment
 
 - [ ] transfer ownership after deployments (when applicable)
 - [ ] complete upgrade (when applicable)
 - [ ] generate deployment/upgrade log files
-- [ ] update [static](https://github.com/maticnetwork/static/tree/master/network) with new contract address and/or version
 
 ---
 
