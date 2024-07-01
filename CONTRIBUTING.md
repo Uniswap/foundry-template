@@ -14,6 +14,7 @@
   - [NatSpec \& Comments](#natspec--comments)
 - [Versioning](#versioning)
 - [Testing](#testing)
+  - [Gas Metering](#gas-metering)
 - [Deployment](#deployment)
   - [Deployment](#deployment-1)
   - [Deployment Info Generation](#deployment-info-generation)
@@ -121,6 +122,22 @@ Whenever contracts are modified, only the version of the changed contracts shoul
 
 ## Testing
 
+The following testing practices should be followed when writing unit tests for new code. All functions, lines and branches should be tested to result in 100% testing coverage. Fuzz parameters and conditions whenever possible. Extremes should be tested in dedicated edge case and corner case tests. Invariants should be tested in dedicated invariant tests.
+
+Differential testing should be used to compare assembly implementations with implementations in Solidity or testing alternative implementations against existing Solidity or non-Solidity code using ffi.
+
+New features must be merged with associated tests. Bug fixes should have a corresponding test that fails without the bug fix.
+
+### Gas Metering
+
+The [Forge Gas Snapshot](https://github.com/marktoda/forge-gas-snapshot) library is used to measure the gas cost of individual actions. To ensure that the measured gas is accurate, tests have to be run using the isolate argument to generate the correct snapshot and ensure that CI passes:
+
+```sh
+$ forge test --isolate
+```
+
+When adding new functionality, a new gas snapshot should be added, preferably using `snapLastCall`.
+
 ## Deployment
 
 This repo utilizes versioned deployments. Any changes to a contract should update the version of this specific contract. A script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated containing various information about the deployment itself as well as past deployments.
@@ -144,23 +161,3 @@ Including the `--verify` flag will verify deployed contracts on Etherscan. Defin
 ```shell
 forge script script/Deploy.s.sol --broadcast --rpc-url <rpc_url> --verify
 ```
-
-## Releases
-
-Releases should be created whenever the code on the main branch is updated to reflect a deployment or an upgrade on a network. The release should be named after the version of the contracts deployed or upgraded.
-The release should include the following:
-
-- In case of a MAJOR version
-  - changelog
-  - summary of breaking changes
-  - summary of new features
-  - summary of fixes
-- In case of a MINOR version
-  - changelog
-  - summary of new features
-  - summary of fixes
-- In case of a PATCH version
-  - changelog
-  - summary of fixes
-- Deployment information (can be copied from the generated log files)
-  - Addresses of the deployed contracts
