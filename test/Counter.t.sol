@@ -3,6 +3,7 @@ pragma solidity 0.8.23;
 
 import "forge-std/Test.sol";
 import "test/util/TestHelpers.sol";
+import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
 
 import {Counter} from "src/Counter.sol";
 
@@ -15,18 +16,20 @@ abstract contract Deployed is Test, TestHelpers {
     }
 }
 
-contract CounterTest_Deployed is Deployed {
+contract CounterTest_Deployed is Deployed, GasSnapshot {
     function test_IsInitialized() public {
         assertEq(counter.number(), 10);
     }
 
     function test_IncrementsNumber() public {
         counter.increment();
+        snapLastCall("Increment counter number");
         assertEq(counter.number(), 11);
     }
 
     function testFuzz_SetsNumber(uint256 x) public {
         counter.setNumber(x);
+        snapLastCall("Set counter number");
         assertEq(counter.number(), x);
     }
 }
