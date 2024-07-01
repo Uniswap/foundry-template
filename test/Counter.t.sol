@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.23;
+pragma solidity 0.8.26;
 
 import "forge-std/Test.sol";
 import "test/util/TestHelpers.sol";
@@ -27,9 +27,14 @@ contract CounterTest_Deployed is Deployed, GasSnapshot {
         assertEq(counter.number(), 11);
     }
 
-    function testFuzz_SetsNumber(uint256 x) public {
+    function test_fuzz_SetsNumber(uint256 x) public {
+        counter.setNumber(x);
+        assertEq(counter.number(), x);
+    }
+
+    function test_SetNumber_gas() public {
+        uint256 x = 100;
         counter.setNumber(x);
         snapLastCall("Set counter number");
-        assertEq(counter.number(), x);
     }
 }

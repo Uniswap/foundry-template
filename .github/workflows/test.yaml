@@ -10,7 +10,7 @@ env:
   FOUNDRY_PROFILE: ${{ github.event_name == 'push' && 'ci' || 'pr' }}
 
 jobs:
-  test:
+  forge-test:
     strategy:
       fail-fast: true
 
