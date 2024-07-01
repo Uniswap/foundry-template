@@ -8,6 +8,10 @@ via_ir = true
 solc = "0.8.23"
 verbosity = 2
 ffi = true
+fs_permissions = [
+  { access = "read-write", path = ".forge-snapshots"},
+  { access = "read", path = "script/" }
+]
 
 remappings = [
   "forge-std=lib/forge-std/src",
@@ -15,9 +19,19 @@ remappings = [
   "@openzeppelin/contracts-upgradeable=lib/openzeppelin-contracts-upgradeable/contracts"
 ]
 
-[profile.intense.fuzz]
+[profile.default.fuzz]
+runs = 1000
+
+[profile.pr.fuzz]
 runs = 10000
-max_test_rejects = 999999
+
+[profile.ci.fuzz]
+runs = 100000
+
+[profile.debug]
+via_ir = false
+optimizer_runs = 200
+fuzz.runs = 100
 
 [fmt]
 line_length = 160
