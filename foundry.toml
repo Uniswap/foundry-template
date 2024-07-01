@@ -8,8 +8,10 @@ via_ir = true
 solc = "0.8.23"
 verbosity = 2
 ffi = true
-fs_permissions = [{ access = "read-write", path = ".forge-snapshots"},
-                  { access = "read", path = "script/" }]
+fs_permissions = [
+  { access = "read-write", path = ".forge-snapshots"},
+  { access = "read", path = "script/" }
+]
 
 remappings = [
   "forge-std=lib/forge-std/src",

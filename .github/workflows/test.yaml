@@ -3,9 +3,15 @@ name: test
 on:
   pull_request:
     branches: [main, master, staging, dev, feat/**, fix/**]
+    env:
+      FOUNDRY_PROFILE: pr
+  push:
+    branches: [main, master, staging, dev]
+    env:
+      FOUNDRY_PROFILE: ci
 
 env:
-  FOUNDRY_PROFILE: ci
+  FORGE_SNAPSHOT_CHECK: true
 
 jobs:
   check:
