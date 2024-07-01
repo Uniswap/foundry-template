@@ -19,7 +19,6 @@ Before deployment
 - [ ] fuzz and invariant tests (when applicable)
 - [ ] formal verification (when applicable)
 - [ ] deployment or upgrade scripts ready
-- [ ] version management agreed upon and implemented
 
 After deployment
 

@@ -12,7 +12,6 @@
   - [Code Style](#code-style)
   - [Interfaces](#interfaces)
   - [NatSpec \& Comments](#natspec--comments)
-- [Versioning](#versioning)
 - [Testing](#testing)
   - [Gas Metering](#gas-metering)
 - [Deployment](#deployment)
@@ -45,15 +44,15 @@ This section outlines the branching strategy of this repo.
 
 ### Main
 
-The main branch is supposed to reflect the deployed state on all networks. Any pull requests into this branch MUST come from the staging branch. The main branch is protected and requires a separate code review by the security team. Whenever the main branch is updated, a new release is created with the latest version. For more information on versioning, check [here](#versioning).
+The main branch is supposed to reflect the deployed state on all networks. Any pull requests into this branch MUST come from the staging branch.
 
 ### Staging
 
-The staging branch reflects new code complete deployments or upgrades containing fixes and/or features. Any pull requests into this branch MUST come from the dev branch. The staging branch is used for security audits and deployments. Once the deployment is complete and deployment log files are generated, the branch can be merged into main. For more information on the deployment and log file generation check [here](#deployment--versioning).
+The staging branch reflects new code complete deployments or upgrades containing fixes and/or features. Any pull requests into this branch MUST come from the dev branch. The staging branch is used for security audits and deployments. Once the deployment is complete and verified as well as deployment log files are generated, the branch can be merged into main. For more information on the deployment and log file generation check [here](#deployment).
 
 ### Dev
 
-This is the active development branch. All pull requests into this branch MUST come from fix or feature branches. Upon code completion this branch is merged into staging for auditing and deployment.
+This is the active development branch. All pull requests into this branch MUST come from fix or feature branches. Upon code completion this branch is merged into staging for auditing and deployment. PRs into this branch should squash all commits into a single commit.
 
 ### Feature
 
@@ -114,12 +113,6 @@ Every contract MUST implement their corresponding interface that includes all ex
 
 Interfaces should be the entrypoint for all contracts. When exploring the a contract within the repository, the interface MUST contain all relevant information to understand the functionality of the contract in the form of NatSpec comments. This includes all externally callable functions, errors and events. The NatSpec documentation MUST be added to the functions, errors and events within the interface. This allows a reader to understand the functionality of a function before moving on to the implementation. The implementing functions MUST point to the NatSpec documentation in the interface using `@inheritdoc`. Internal and private functions shouldn't have NatSpec documentation except for `@dev` comments, whenever more context is needed. Additional comments within a function should only be used to give more context to more complex operations, otherwise the code should be kept readable and self-explanatory.
 
-## Versioning
-
-This repo utilizes [semantic versioning](https://semver.org/) for smart contracts. An `IVersioned` interface is included in the [interfaces directory](src/interface/IVersioned.sol) exposing a unified versioning interface for all contracts. This version MUST be included in all contracts, whether they are upgradeable or not, to be able to easily match deployed versions. For example, in the case of a non-upgradeable contract one version could be deployed to a network and later a new version might be deployed to another network. The exposed `version()` function is also used by the [Deployment Log Generator](https://github.com/0xPolygon/forge-chronicles#readme) to extract information about the version.
-
-Whenever contracts are modified, only the version of the changed contracts should be updated. Unmodified contracts should remain on the version of their last change.
-
 ## Testing
 
 The following testing practices should be followed when writing unit tests for new code. All functions, lines and branches should be tested to result in 100% testing coverage. Fuzz parameters and conditions whenever possible. Extremes should be tested in dedicated edge case and corner case tests. Invariants should be tested in dedicated invariant tests.
@@ -140,7 +133,7 @@ When adding new functionality, a new gas snapshot should be added, preferably us
 
 ## Deployment
 
-This repo utilizes versioned deployments. Any changes to a contract should update the version of this specific contract. A script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated containing various information about the deployment itself as well as past deployments.
+After deployments are executed a script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated using the [Forge Chronicles](https://github.com/0xPolygon/forge-chronicles) library containing various information about the deployment itself as well as past deployments.
 
 ### Deployment
 
