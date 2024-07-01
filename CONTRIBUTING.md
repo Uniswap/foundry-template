@@ -14,12 +14,9 @@
   - [NatSpec \& Comments](#natspec--comments)
 - [Versioning](#versioning)
 - [Testing](#testing)
-  - [Deployer Template](#deployer-template)
 - [Deployment](#deployment)
-  - [Deployer Template](#deployer-template-1)
   - [Deployment](#deployment-1)
   - [Deployment Info Generation](#deployment-info-generation)
-- [Deployer Template Script](#deployer-template-script)
 - [Releases](#releases)
 
 ## Install
@@ -124,17 +121,9 @@ Whenever contracts are modified, only the version of the changed contracts shoul
 
 ## Testing
 
-### Deployer Template
-
-This repo provides a deployer template library for consistency between scripts and unit tests. For more information on how to use the template, check [here](https://github.com/0xPolygon/deployer-kit#readme).
-
 ## Deployment
 
 This repo utilizes versioned deployments. Any changes to a contract should update the version of this specific contract. A script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated containing various information about the deployment itself as well as past deployments.
-
-### Deployer Template
-
-This repo provides a deployer template library for consistency between scripts and unit tests. For more information on how to use the template, check [here](https://github.com/0xPolygon/deployer-kit#readme).
 
 ### Deployment
 
