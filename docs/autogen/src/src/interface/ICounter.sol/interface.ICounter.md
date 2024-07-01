@@ -1,8 +1,5 @@
 # ICounter
-[Git Source](https://github.com/gretzke/foundry-template/blob/952489c408f511dc764c05d3a2a21ded78da224f/src/interface/ICounter.sol)
-
-**Inherits:**
-[IVersioned](/src/interface/IVersioned.sol/interface.IVersioned.md)
+[Git Source](https://github.com/Uniswap/foundry-template/blob/6ed2d53f10b4739f84426a12bef01482d7a2e669/src/interface/ICounter.sol)
 
 
 ## Functions

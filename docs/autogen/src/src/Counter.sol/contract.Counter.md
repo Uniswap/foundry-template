@@ -1,8 +1,8 @@
 # Counter
-[Git Source](https://github.com/gretzke/foundry-template/blob/952489c408f511dc764c05d3a2a21ded78da224f/src/Counter.sol)
+[Git Source](https://github.com/Uniswap/foundry-template/blob/6ed2d53f10b4739f84426a12bef01482d7a2e669/src/Counter.sol)
 
 **Inherits:**
-[ICounter](/src/interface/ICounter.sol/interface.ICounter.md), Initializable
+[ICounter](/src/interface/ICounter.sol/interface.ICounter.md)
 
 
 ## State Variables
@@ -18,14 +18,7 @@ uint256 public number;
 
 
 ```solidity
-constructor();
-```
-
-### initialize
-
-
-```solidity
-function initialize(uint256 initialNumber) public initializer;
+constructor(uint256 initialNumber);
 ```
 
 ### setNumber
@@ -51,17 +44,4 @@ Increments the number by 1
 ```solidity
 function increment() public;
 ```
-
-### version
-
-
-```solidity
-function version() external pure returns (string memory);
-```
-**Returns**
-
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`string`|The version of the contract|
-
 
