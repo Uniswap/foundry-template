@@ -34,7 +34,10 @@ optimizer_runs = 200
 fuzz.runs = 100
 
 [fmt]
-line_length = 160
+line_length = 120
+tab_width = 4
+quote_style = "single"
+sort_imports = true
 number_underscore = "thousands"
 
 [rpc_endpoints]
