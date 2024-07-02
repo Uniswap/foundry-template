@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        # with:
+        #   token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install foundry
         uses: foundry-rs/foundry-toolchain@v1
@@ -34,6 +34,7 @@ jobs:
           forge coverage | grep '^|' | grep -v 'test/'
           echo EOF
           } >> "$GITHUB_OUTPUT"
+          echo $GITHUB_OUTPUT
         env:
           FOUNDRY_RPC_URL: "${{ secrets.RPC_URL }}"
 
@@ -51,7 +52,7 @@ jobs:
             const currentCoverage = fs.readFileSync(file, "utf8").trim();
             const newCoverage = (`${{ steps.coverage.outputs.COVERAGE }}`).trim();
             if (newCoverage != currentCoverage) {
-              core.setFailed(`Code coverage not updated. Run : forge coverage | grep '^|' | grep -v 'test/'  > coverage.txt`);
+              core.setFailed(`Code coverage not updated. Run : forge coverage --no-match-coverage "(test)" | grep '^|' > coverage.txt`);
             }
 
       - name: Comment on PR
