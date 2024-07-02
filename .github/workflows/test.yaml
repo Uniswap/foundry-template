@@ -3,12 +3,14 @@ name: test
 on:
   pull_request:
     branches: [main, master, staging, dev, feat/**, fix/**]
+  push:
+    branches: [main, master, staging, dev]
 
 env:
-  FOUNDRY_PROFILE: ci
+  FOUNDRY_PROFILE: ${{ github.event_name == 'push' && 'ci' || 'pr' }}
 
 jobs:
-  check:
+  forge-test:
     strategy:
       fail-fast: true
 
@@ -26,11 +28,13 @@ jobs:
 
       - name: Run Forge build
         run: |
+          echo Foundry profile: $FOUNDRY_PROFILE
           forge --version
           forge build --sizes
         id: build
 
       - name: Run Forge tests
-        run: |
-          forge test -vvv
+        run: forge test --isolate -vvv
         id: test
+        env:
+          FORGE_SNAPSHOT_CHECK: true

@@ -1,6 +1,5 @@
 ## Template Repo (Foundry)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI Status](../../actions/workflows/test.yaml/badge.svg)](../../actions)
 
 This template repo is a quick and easy way to get started with a new Solidity project. It comes with a number of features that are useful for developing and deploying smart contracts. Such as:
@@ -14,7 +13,6 @@ This template repo is a quick and easy way to get started with a new Solidity pr
 - [Deployment](#deployment)
 - [Docs](#docs)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Setup
 
