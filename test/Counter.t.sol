@@ -3,12 +3,11 @@ pragma solidity 0.8.26;
 
 import {GasSnapshot} from 'forge-gas-snapshot/GasSnapshot.sol';
 import 'forge-std/Test.sol';
-import 'test/util/TestHelpers.t.sol';
 
 import {Deploy} from 'script/Deploy.s.sol';
 import {Counter} from 'src/Counter.sol';
 
-abstract contract Deployed is Test, TestHelpers {
+abstract contract Deployed is Test {
     Counter counter;
 
     function setUp() public virtual {
@@ -40,7 +39,7 @@ contract CounterTest_Deployed is Deployed, GasSnapshot {
     }
 }
 
-contract DeploymentTest is Test, TestHelpers {
+contract DeploymentTest is Test {
     Counter counter;
 
     function setUp() public virtual {
