@@ -103,7 +103,7 @@ The repo follows the official [Solidity Style Guide](https://docs.soliditylang.o
   abstract contract AccessControl is ..., {
   ```
 
-- Unchecked arithmetic blocks should contain comments explaining why overflow is guaranteed not to happen. If the reason is immediately apparent from the line above the unchecked block, the comment may be omitted.
+- Unchecked arithmetic blocks should contain comments explaining why overflow is guaranteed not to happen or permissible. If the reason is immediately apparent from the line above the unchecked block, the comment may be omitted.
 
 ### Interfaces
 
@@ -136,16 +136,6 @@ When adding new functionality, a new gas snapshot should be added, preferably us
 After deployments are executed a script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated using the [Forge Chronicles](https://github.com/0xPolygon/forge-chronicles) library containing various information about the deployment itself as well as past deployments.
 
 ### Deployment
-
-This repo set up the following RPCs in the `foundry.toml` file:
-
-- mainnet: Ethereum Mainnet
-- goerli: Ethereum Goerli
-- sepolia: Ethereum Sepolia
-- polygon_pos: Polygon PoS
-- mumbai: Polygon Mumbai
-- polygon_zkevm: Polygon zkEVM
-- polygon_zkevm_testnet: Polygon zkEVM Testnet
 
 To deploy the contracts, provide the `--broadcast` flag to the forge script command. Should the etherscan verification time out, it can be picked up again by replacing the `--broadcast` flag with `--resume`.
 Deploy the contracts to one of the predefined networks by providing the according key with the `--rpc-url` flag. Most of the predefined networks require the `INFURA_KEY` environment variable to be set in the `.env` file.
