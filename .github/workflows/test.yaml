@@ -28,6 +28,7 @@ jobs:
 
       - name: Run Forge build
         run: |
+          echo Foundry profile: $FOUNDRY_PROFILE
           forge --version
           forge build --sizes
         id: build
