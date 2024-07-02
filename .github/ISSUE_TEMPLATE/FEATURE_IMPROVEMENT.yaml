@@ -15,6 +15,7 @@ body:
       options:
         - Gas Optimization
         - General design optimization (improving efficiency, cleanliness, or developer experience)
+        - Testing
         - Documentation
   - type: textarea
     attributes:
