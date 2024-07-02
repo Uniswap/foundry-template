@@ -2,6 +2,7 @@
 /out
 /cache
 /coverage
+/report
 lcov.info
 .DS_Store
 .env
@@ -10,7 +11,3 @@ lcov.info
 
 broadcast/*/31337
 deployments/**/31337.*
-
-# storage layout checker library
-storage_check_cache
-storage_check_report
