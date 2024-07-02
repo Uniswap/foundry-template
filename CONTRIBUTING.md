@@ -2,6 +2,7 @@
 
 - [Install](#install)
 - [Pre-commit Hooks](#pre-commit-hooks)
+- [Requirements for merge](#requirements-for-merge)
 - [Branching](#branching)
   - [Main](#main)
   - [Staging](#staging)
@@ -37,6 +38,17 @@ This repo includes the following pre-commit hooks that are defined in the `.pre-
 - `format`: This hook uses `forge fmt` to format all Solidity files.
 - `doc`: This hook uses `forge doc` to automatically generate documentation for all Solidity files whenever the NatSpec documentation changes. The `script/util/doc_gen.sh` script is used to generate documentation. Forge updates the commit hash in the documentation automatically. To only generate new documentation when the documentation has actually changed, the script checks whether more than just the hash has changed in the documentation and discard all changes if only the hash has changed.
 - `prettier`: All remaining files are formatted using prettier.
+
+## Requirements for merge
+
+In order for a PR to be merged, it must pass the following requirements:
+
+- All commits within the PR must be signed
+- CI must pass (tests, linting, etc.)
+- New features must be merged with associated tests
+- Bug fixes must have a corresponding test that fails without the fix
+- The PR must be approved by at least one maintainer
+  - The PR must be approved by 2+ maintainers if the PR is a new feature or > 100 LOC changed
 
 ## Branching
 
