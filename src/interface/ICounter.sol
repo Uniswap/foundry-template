@@ -1,9 +1,7 @@
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.23;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity 0.8.26;
 
-import {IVersioned} from "./IVersioned.sol";
-
-interface ICounter is IVersioned {
+interface ICounter {
     /// @return The current number
     function number() external view returns (uint256);
 
