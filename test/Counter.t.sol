@@ -43,6 +43,7 @@ contract DeploymentTest is Test {
     Counter counter;
 
     function setUp() public virtual {
+        vm.setEnv('PRIVATE_KEY', vm.toString(makeAccount('DEPLOYER').key));
         counter = new Deploy().run();
     }
 
