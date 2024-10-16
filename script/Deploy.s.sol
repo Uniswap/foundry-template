@@ -8,10 +8,8 @@ import {Counter} from 'src/Counter.sol';
 contract Deploy is Script {
     using stdJson for string;
 
-    function run() public returns (Counter counter) {
-        vm.startBroadcast(vm.envUint('PRIVATE_KEY'));
+    function run() public returns (Counter) {
         uint256 initialNumber = 5;
-        counter = new Counter(initialNumber);
-        vm.stopBroadcast();
+        return new Counter(initialNumber);
     }
 }
