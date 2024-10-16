@@ -12,10 +12,6 @@ jobs:
     if: github.base_ref == 'main'
     runs-on: ubuntu-latest
     steps:
-      - name: Log
-        run: |
-          echo "Base ref: ${{ github.base_ref }}"
-          echo "Head ref: ${{ github.head_ref }}"
       - name: Check branches
         run: |
           if [ ${{ github.head_ref }} != "staging" ]; then
