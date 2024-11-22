@@ -1,5 +1,5 @@
 # ICounter
-[Git Source](https://github.com/Uniswap/foundry-template/blob/6ed2d53f10b4739f84426a12bef01482d7a2e669/src/interface/ICounter.sol)
+[Git Source](https://github.com/Uniswap/foundry-template/blob/0864bd3fda3ae2b97362ae80691cd59ca9cf5090/src/interfaces/ICounter.sol)
 
 
 ## Functions
