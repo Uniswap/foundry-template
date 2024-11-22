@@ -4,7 +4,7 @@ out = "out"
 libs = ["lib"]
 optimizer = true
 optimizer_runs = 999999
-via_ir = false
+via_ir = true
 solc = "0.8.26"
 verbosity = 2
 ffi = true
@@ -17,6 +17,14 @@ remappings = [
   "forge-std=lib/forge-std/src",
   "@openzeppelin/contracts=lib/openzeppelin-contracts/contracts",
   "@openzeppelin/contracts-upgradeable=lib/openzeppelin-contracts-upgradeable/contracts"
+]
+
+additional_compiler_profiles = [
+  { name = "test", via_ir = false }
+]
+
+compilation_restrictions = [
+  { paths = "test/**", via_ir = false }
 ]
 
 [profile.default.fuzz]

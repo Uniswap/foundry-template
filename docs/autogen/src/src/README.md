@@ -1,5 +1,5 @@
 
 
 # Contents
-- [interface](/src/interface)
+- [interfaces](/src/interfaces)
 - [Counter](Counter.sol/contract.Counter.md)
