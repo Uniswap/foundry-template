@@ -6,6 +6,7 @@ optimizer = true
 optimizer_runs = 999999
 via_ir = true
 solc = "0.8.26"
+evm_version = "cancun"
 verbosity = 2
 ffi = true
 fs_permissions = [
