@@ -10,6 +10,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
   - [Interfaces](#interfaces)
   - [NatSpec \& Comments](#natspec--comments)
 - [Testing](#testing)
+  - [Best Practices](#best-practices)
   - [IR Compilation](#ir-compilation)
   - [Gas Metering](#gas-metering)
 - [Deployment](#deployment)
@@ -105,6 +106,10 @@ The following testing practices should be followed when writing unit tests for n
 Differential testing should be used to compare assembly implementations with implementations in Solidity or testing alternative implementations against existing Solidity or non-Solidity code using ffi.
 
 New features must be merged with associated tests. Bug fixes should have a corresponding test that fails without the bug fix.
+
+### Best Practices
+
+Best practices and naming conventions should be followed as outlined in the [Foundry Book](https://getfoundry.sh/forge/tests/overview).
 
 ### IR Compilation
 
