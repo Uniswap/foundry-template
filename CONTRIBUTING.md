@@ -48,6 +48,7 @@ In order for a PR to be merged, it must pass the following requirements:
 - Bug fixes must have a corresponding test that fails without the fix
 - The PR must be approved by at least one maintainer
   - The PR must be approved by 2+ maintainers if the PR is a new feature or > 100 LOC changed
+- The PR must be squash merged into a single commit
 
 ## Code Practices
 
