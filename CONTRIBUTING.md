@@ -139,13 +139,13 @@ New features must be merged with associated tests. Bug fixes should have a corre
 
 ### Gas Metering
 
-The [Forge Gas Snapshot](https://github.com/marktoda/forge-gas-snapshot) library is used to measure the gas cost of individual actions. To ensure that the measured gas is accurate, tests have to be run using the isolate argument to generate the correct snapshot and ensure that CI passes:
+Gas for function calls should be metered using the built in `vm.snapshotGasLastCall` function in forge. To meter across multiple calls `vm.startSnapshotGas` and `vm.stopSnapshotGas` can be used. Running the tests with `--isolate` is recommended to ensure that the gas is measured correctly.
 
 ```sh
 $ forge test --isolate
 ```
 
-When adding new functionality, a new gas snapshot should be added, preferably using `snapLastCall`.
+For more information on gas metering see the [Forge cheatcodes reference](https://getfoundry.sh/reference/cheatcodes/gas-snapshots/#snapshotgas-cheatcodes).
 
 ## Deployment
 
