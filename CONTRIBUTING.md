@@ -8,6 +8,7 @@
   - [Interfaces](#interfaces)
   - [NatSpec \& Comments](#natspec--comments)
 - [Testing](#testing)
+  - [IR Compilation](#ir-compilation)
   - [Gas Metering](#gas-metering)
 - [Deployment](#deployment)
   - [Deployment](#deployment-1)
@@ -102,6 +103,10 @@ The following testing practices should be followed when writing unit tests for n
 Differential testing should be used to compare assembly implementations with implementations in Solidity or testing alternative implementations against existing Solidity or non-Solidity code using ffi.
 
 New features must be merged with associated tests. Bug fixes should have a corresponding test that fails without the bug fix.
+
+### IR Compilation
+
+When the contracts are compiled via IR, tests should be compiled without IR and the contracts deployed from their bytecode to ensure quick compilation times and bytecode consistency. Check [here](https://github.com/Uniswap/foundry-template/blob/613f81c107cd2885a869dbe4afc1da4f96ed9218/foundry.toml#L22-L28) and [here](https://github.com/Uniswap/foundry-template/blob/main/test/deployers/CounterDeployer.sol) for an example.
 
 ### Gas Metering
 
