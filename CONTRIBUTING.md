@@ -65,6 +65,18 @@ The repo follows the official [Solidity Style Guide](https://docs.soliditylang.o
   }
   ```
 
+- Naming collisions should be avoided using a single trailing underscore.
+
+  ```solidity
+  contract TestContract {
+      uint256 public foo;
+
+      constructor(uint256 foo_) {
+        foo = foo_;
+      }
+  }
+  ```
+
 - Events should generally be emitted immediately after the state change that they
   represent, and should be named in the past tense. Some exceptions may be made for gas
   efficiency if the result doesn't affect observable ordering of events.
