@@ -105,13 +105,7 @@ New features must be merged with associated tests. Bug fixes should have a corre
 
 ### Gas Metering
 
-The [Forge Gas Snapshot](https://github.com/marktoda/forge-gas-snapshot) library is used to measure the gas cost of individual actions. To ensure that the measured gas is accurate, tests have to be run using the isolate argument to generate the correct snapshot and ensure that CI passes:
-
-```sh
-$ forge test --isolate
-```
-
-When adding new functionality, a new gas snapshot should be added, preferably using `snapLastCall`.
+The [Forge Gas Snapshot](https://github.com/marktoda/forge-gas-snapshot) library is used to measure the gas cost of individual actions. Tests that measure gas should be annotated with `/// forge-config: default.isolate = true` and not be fuzzed to ensure that the gas snapshot is accurate and consistent for CI verification. All external functions should have a gas snapshot test, diverging paths within a function should have appropriate gas snapshot tests.
 
 ## Deployment
 
