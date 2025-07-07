@@ -1,5 +1,7 @@
 # Contributing
 
+For the latest version of this document, see [here](https://github.com/Uniswap/foundry-template/blob/main/CONTRIBUTING.md).
+
 - [Install](#install)
 - [Pre-commit Hooks](#pre-commit-hooks)
 - [Requirements for merge](#requirements-for-merge)
