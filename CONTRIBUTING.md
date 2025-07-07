@@ -7,6 +7,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
 - [Requirements for merge](#requirements-for-merge)
 - [Code Practices](#code-practices)
   - [Code Style](#code-style)
+  - [Solidity Versioning](#solidity-versioning)
   - [Interfaces](#interfaces)
   - [NatSpec \& Comments](#natspec--comments)
 - [Testing](#testing)
@@ -102,6 +103,22 @@ The repo follows the official [Solidity Style Guide](https://docs.soliditylang.o
   ```
 
 - Unchecked arithmetic blocks should contain comments explaining why overflow is guaranteed not to happen or permissible. If the reason is immediately apparent from the line above the unchecked block, the comment may be omitted.
+
+### Solidity Versioning
+
+Contracts that are meant to be deployed MUST have an explicit version set in the `pragma` statement.
+
+```solidity
+pragma solidity 0.8.X;
+```
+
+Abstract contracts, libraries and interfaces MUST use the caret (`^`) range operator to specify the version range to ensure better compatibility.
+
+```solidity
+pragma solidity ^0.X.0;
+```
+
+Libraries and abstract contracts using functionality introduced in newer versions of Solidity can use caret range operators with higher path versions (e.g., `^0.8.24` when using transient storage opcodes). For interfaces, it should be considered to use the greater than or equal to (`>=`) range operator to ensure better compatibility with future versions of Solidity.
 
 ### Interfaces
 
