@@ -62,6 +62,10 @@ The main branch is supposed to reflect the deployed state on all networks. Any p
 
 The staging branch reflects new code complete deployments or upgrades containing fixes and/or features. Any pull requests into this branch MUST come from the dev branch. The staging branch is used for security audits and deployments. Once the deployment is complete and verified as well as deployment log files are generated, the branch can be merged into main. For more information on the deployment and log file generation check [here](#deployment).
 
+### Audit
+
+Each fix in response to an audit finding should be developed on its own branch. The naming convention for these branches is `audit/<provider>/<issue_number>`. The PR title should include the provider and the issue number at minimum. Sometimes it is desireable to have all of the fixes in a single PR for review. In this case, each fix PR should be included via the `merge` strategy, and the combined PR can be merged into the staging branch via `merge` to preserve the order of the fix commits.
+
 ### Dev
 
 This is the active development branch. All pull requests into this branch MUST come from fix or feature branches. Upon code completion this branch is merged into staging for auditing and deployment. PRs into this branch should squash all commits into a single commit.
