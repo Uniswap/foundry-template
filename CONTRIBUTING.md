@@ -3,12 +3,6 @@
 - [Install](#install)
 - [Pre-commit Hooks](#pre-commit-hooks)
 - [Requirements for merge](#requirements-for-merge)
-- [Branching](#branching)
-  - [Main](#main)
-  - [Staging](#staging)
-  - [Dev](#dev)
-  - [Feature](#feature)
-  - [Fix](#fix)
 - [Code Practices](#code-practices)
   - [Code Style](#code-style)
   - [Interfaces](#interfaces)
@@ -49,30 +43,6 @@ In order for a PR to be merged, it must pass the following requirements:
 - Bug fixes must have a corresponding test that fails without the fix
 - The PR must be approved by at least one maintainer
   - The PR must be approved by 2+ maintainers if the PR is a new feature or > 100 LOC changed
-
-## Branching
-
-This section outlines the branching strategy of this repo.
-
-### Main
-
-The main branch is supposed to reflect the deployed state on all networks. Any pull requests into this branch MUST come from the staging branch.
-
-### Staging
-
-The staging branch reflects new code complete deployments or upgrades containing fixes and/or features. Any pull requests into this branch MUST come from the dev branch. The staging branch is used for security audits and deployments. Once the deployment is complete and verified as well as deployment log files are generated, the branch can be merged into main. For more information on the deployment and log file generation check [here](#deployment).
-
-### Dev
-
-This is the active development branch. All pull requests into this branch MUST come from fix or feature branches. Upon code completion this branch is merged into staging for auditing and deployment. PRs into this branch should squash all commits into a single commit.
-
-### Feature
-
-Any new feature should be developed on a separate branch. The naming convention for these branches is `feat/*`. Once the feature is complete, a pull request into the dev branch can be created.
-
-### Fix
-
-Any bug fixes should be developed on a separate branch. The naming convention for these branches is `fix/*`. Once the fix is complete, a pull request into the dev branch can be created.
 
 ## Code Practices
 
