@@ -147,7 +147,8 @@ When the contracts are compiled via IR, tests should be compiled without IR and 
 
 ### Gas Metering
 
-The [Forge Gas Snapshot](https://github.com/marktoda/forge-gas-snapshot) library is used to measure the gas cost of individual actions. Tests that measure gas should be annotated with `/// forge-config: default.isolate = true` and not be fuzzed to ensure that the gas snapshot is accurate and consistent for CI verification. All external functions should have a gas snapshot test, diverging paths within a function should have appropriate gas snapshot tests.
+Gas for function calls should be metered using the built in `vm.snapshotGasLastCall` function in forge. To meter across multiple calls `vm.startSnapshotGas` and `vm.stopSnapshotGas` can be used. Tests that measure gas should be annotated with `/// forge-config: default.isolate = true` and not be fuzzed to ensure that the gas snapshot is accurate and consistent for CI verification. All external functions should have a gas snapshot test, diverging paths within a function should have appropriate gas snapshot tests.
+For more information on gas metering see the [Forge cheatcodes reference](https://getfoundry.sh/reference/cheatcodes/gas-snapshots/#snapshotgas-cheatcodes).
 
 ## Deployment
 
