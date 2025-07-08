@@ -169,7 +169,9 @@ The preferred way to manage dependencies is using [`forge install`](https://book
 
 However, in cases where there is a Solidity version mismatch between your project and a dependency, you may need to include the compiled bytecode directly in a utility contract. This approach allows you to deploy the dependency using the correct bytecode, regardless of source compatibility. This may be especially helpful for integration testing.
 
-Below is an example of how to deploy a contract using hardcoded bytecode and the `CREATE2` opcode:
+First, check if the deployer is already part of [Briefcase](https://github.com/Uniswap/briefcase/tree/main/src/deployers). If so, import the deployer from here.
+
+Otherwise, you'll need to create a custom deploy contract. Below is an example of how to deploy a contract using hardcoded bytecode and the `CREATE2` opcode:
 
 ```solidity
 // SPDX-License-Identifier: MIT
