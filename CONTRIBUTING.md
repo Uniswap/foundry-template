@@ -22,6 +22,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
   - [Deployment](#deployment-1)
   - [Monorepo](#monorepo)
 - [Dependency Management](#dependency-management)
+- [Releases](#releases)
 
 ## Install
 
@@ -214,3 +215,7 @@ contract BytecodeDeployer {
     }
 }
 ```
+
+## Releases
+
+Every deployment and changes made to contracts after deployment should be accompanied by a tag and release on GitHub.
