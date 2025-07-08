@@ -4,3 +4,6 @@
 [submodule "lib/forge-chronicles"]
 	path = lib/forge-chronicles
 	url = https://github.com/0xPolygon/forge-chronicles
+[submodule "lib/briefcase"]
+	path = lib/briefcase
+	url = https://github.com/Uniswap/briefcase

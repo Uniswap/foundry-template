@@ -21,6 +21,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
 - [Deployment](#deployment)
   - [Deployment](#deployment-1)
   - [Monorepo](#monorepo)
+- [Dependency Management](#dependency-management)
 
 ## Install
 
@@ -185,3 +186,31 @@ forge script script/Deploy.s.sol --broadcast --rpc-url <rpc_url> --verify
 ### Monorepo
 
 Alternatively, contracts should be integrated into the [Smart Contract Monorepo](https://github.com/uniswap/contracts) to be deployed via the deployer cli tool.
+
+## Dependency Management
+
+The preferred way to manage dependencies is using [`forge install`](https://book.getfoundry.sh/forge/dependencies). This ensures that your project uses the correct versions and structure for all external libraries.
+
+However, in cases where there is a Solidity version mismatch between your project and a dependency, it may be required to include the compiled bytecode directly in a utility contract. This approach allows to deploy the dependency using the correct bytecode, regardless of source compatibility. This may be especially helpful for integration testing.
+
+First, it should be checked if the deployer is already part of [Briefcase](https://github.com/Uniswap/briefcase/tree/main/src/deployers). If so, import the deployer from here.
+
+Otherwise, a custom deploy contract should be created. Below is an example of how to deploy a contract using hardcoded bytecode and the `CREATE2` opcode.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+contract BytecodeDeployer {
+    /// @dev Deploys a contract using CREATE2 with the provided bytecode and salt.
+    /// @param bytecode The contract bytecode to deploy.
+    /// @param salt The salt to use for CREATE2.
+    /// @return addr The address of the deployed contract.
+    function deploy(bytes memory bytecode, bytes32 salt) public returns (address addr) {
+        require(bytecode.length != 0, "Bytecode is empty");
+        assembly {
+            addr := create2(bytecode, salt)
+            if iszero(extcodesize(addr)) { revert(0, 0) }
+        }
+    }
+}
+```
