@@ -7,10 +7,8 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
 - [Requirements for merge](#requirements-for-merge)
 - [Branching](#branching)
   - [Main](#main)
-  - [Staging](#staging)
   - [Dev](#dev)
-  - [Feature](#feature)
-  - [Fix](#fix)
+  - [Audit](#audit)
 - [Code Practices](#code-practices)
   - [Code Style](#code-style)
   - [Solidity Versioning](#solidity-versioning)
@@ -22,8 +20,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
   - [Gas Metering](#gas-metering)
 - [Deployment](#deployment)
   - [Deployment](#deployment-1)
-  - [Deployment Info Generation](#deployment-info-generation)
-- [Releases](#releases)
+  - [Monorepo](#monorepo)
 
 ## Install
 
@@ -62,23 +59,15 @@ This section outlines the branching strategy of this repo.
 
 ### Main
 
-The main branch is supposed to reflect the deployed state on all networks. Any pull requests into this branch MUST come from the staging branch.
-
-### Staging
-
-The staging branch reflects new code complete deployments or upgrades containing fixes and/or features. Any pull requests into this branch MUST come from the dev branch. The staging branch is used for security audits and deployments. Once the deployment is complete and verified as well as deployment log files are generated, the branch can be merged into main. For more information on the deployment and log file generation check [here](#deployment).
+The main branch is supposed to reflect the deployed state on all networks. Only audited code should be merged into main.
 
 ### Dev
 
-This is the active development branch. All pull requests into this branch MUST come from fix or feature branches. Upon code completion this branch is merged into staging for auditing and deployment. PRs into this branch should squash all commits into a single commit.
+This is the active development branch. Upon code completion this branch is frozen on an audit branch. PRs into this branch should squash all commits into a single commit. In case of multiple parallel development efforts, each project should have its own dev branch with the naming convention `dev/<project_name>` to ensure work in progress is isolated and does not end up on the main branch.
 
-### Feature
+### Audit
 
-Any new feature should be developed on a separate branch. The naming convention for these branches is `feat/*`. Once the feature is complete, a pull request into the dev branch can be created.
-
-### Fix
-
-Any bug fixes should be developed on a separate branch. The naming convention for these branches is `fix/*`. Once the fix is complete, a pull request into the dev branch can be created.
+Before an audit, the code should be frozen on a branch dedicated to the audit with the naming convention `audit/<provider>`. Each fix in response to an audit finding should be developed on its own branch. The naming convention for these branches is `audit/<provider>/<issue_number>`. The PR title should include the provider and the issue number at minimum. Sometimes it is desirable to have all of the fixes in a single PR for review. In this case, each fix PR should be included via the `merge` strategy, and the combined PR can be merged into the dev branch via `merge` to preserve the order of the fix commits.
 
 ## Code Practices
 
@@ -182,14 +171,17 @@ For more information on gas metering see the [Forge cheatcodes reference](https:
 
 ## Deployment
 
-After deployments are executed a script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated using the [Forge Chronicles](https://github.com/0xPolygon/forge-chronicles) library containing various information about the deployment itself as well as past deployments.
+After deployments are executed a script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated using the [Forge Chronicles](https://github.com/uniswap/forge-chronicles) library containing various information about the deployment itself as well as past deployments.
 
 ### Deployment
 
 To deploy the contracts, provide the `--broadcast` flag to the forge script command. Should the etherscan verification time out, it can be picked up again by replacing the `--broadcast` flag with `--resume`.
-Deploy the contracts to one of the predefined networks by providing the according key with the `--rpc-url` flag. Most of the predefined networks require the `INFURA_KEY` environment variable to be set in the `.env` file.
 Including the `--verify` flag will verify deployed contracts on Etherscan. Define the appropriate environment variable for the Etherscan api key in the `.env` file.
 
 ```shell
 forge script script/Deploy.s.sol --broadcast --rpc-url <rpc_url> --verify
 ```
+
+### Monorepo
+
+Alternatively, contracts should be integrated into the [Smart Contract Monorepo](https://github.com/uniswap/contracts) to be deployed via the deployer cli tool.
