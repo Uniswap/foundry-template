@@ -127,7 +127,16 @@ Interfaces should be the entrypoint for all contracts. When exploring the a cont
 
 ## Testing
 
-The following testing practices should be followed when writing unit tests for new code. All functions, lines and branches should be tested to result in 100% testing coverage. Fuzz parameters and conditions whenever possible. Extremes should be tested in dedicated edge case and corner case tests. Invariants should be tested in dedicated invariant tests.
+The following testing practices should be followed when writing unit tests for new code:
+- All functions, lines and branches should be tested to result in 100% testing coverage. 
+- Fuzz parameters and conditions whenever possible. 
+- Extremes should be tested in dedicated edge case and corner case tests. 
+- Invariants should be tested in dedicated invariant tests.
+
+Tests should follow clear naming principles to easily understand the purpose of the test:
+- The test itself (or the contract of the test) should include the name of the function it is testing.
+- When a test checks for a revert, the test name should start with `test_revert_` or `testRevert`.
+- Dedicated fuzz tests should start with `test_fuzz_` or `testFuzz`.
 
 Differential testing should be used to compare assembly implementations with implementations in Solidity or testing alternative implementations against existing Solidity or non-Solidity code using ffi.
 
