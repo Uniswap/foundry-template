@@ -8,6 +8,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
 - [Branching](#branching)
   - [Main](#main)
   - [Dev](#dev)
+  - [Feature](#feature)
   - [Audit](#audit)
 - [Code Practices](#code-practices)
   - [Code Style](#code-style)
@@ -53,7 +54,6 @@ In order for a PR to be merged, it must pass the following requirements:
 - Bug fixes must have a corresponding test that fails without the fix
 - The PR must be approved by at least one maintainer
   - The PR must be approved by 2+ maintainers if the PR is a new feature or > 100 LOC changed
-- The PR must be squash merged into a single commit
 
 ## Branching
 
@@ -61,11 +61,15 @@ This section outlines the branching strategy of this repo.
 
 ### Main
 
-The main branch is supposed to reflect the deployed state on all networks. Only audited code should be merged into main.
+The main branch is supposed to reflect the deployed state on all networks. Only audited code should be merged into main. Squashed commits from dev or feature branches should be merged into the main branch using a regular merge strategy.
 
 ### Dev
 
 This is the active development branch. Upon code completion this branch is frozen on an audit branch. PRs into this branch should squash all commits into a single commit. In case of multiple parallel development efforts, each project should have its own dev branch with the naming convention `dev/<project_name>` to ensure work in progress is isolated and does not end up on the main branch.
+
+### Feature
+
+Feature branches should be owned by one responsible developer. The dev branch should be the target of the feature branch. In pre-audit and pre-deployment repositories feature branches may be merged into the main branch directly. Generally, feature branches should be squashed into a single commit before merging.
 
 ### Audit
 
