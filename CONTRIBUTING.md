@@ -20,7 +20,7 @@ For the latest version of this document, see [here](https://github.com/Uniswap/f
   - [IR Compilation](#ir-compilation)
   - [Gas Metering](#gas-metering)
 - [Deployment](#deployment)
-  - [Deployment](#deployment-1)
+  - [Bytecode Hash](#bytecode-hash)
   - [Monorepo](#monorepo)
 - [Dependency Management](#dependency-management)
 - [Releases](#releases)
@@ -179,18 +179,13 @@ For more information on gas metering see the [Forge cheatcodes reference](https:
 
 After deployments are executed a script is provided that extracts deployment information from the `run-latest.json` file within the `broadcast` directory generated while the forge script runs. From this information a JSON and markdown file is generated using the [Forge Chronicles](https://github.com/uniswap/forge-chronicles) library containing various information about the deployment itself as well as past deployments.
 
-### Deployment
+### Bytecode Hash
 
-To deploy the contracts, provide the `--broadcast` flag to the forge script command. Should the etherscan verification time out, it can be picked up again by replacing the `--broadcast` flag with `--resume`.
-Including the `--verify` flag will verify deployed contracts on Etherscan. Define the appropriate environment variable for the Etherscan api key in the `.env` file.
-
-```shell
-forge script script/Deploy.s.sol --broadcast --rpc-url <rpc_url> --verify
-```
+Bytecode hash MUST be set to `none` in the `foundry.toml` file to ensure that the bytecode is consistent.
 
 ### Monorepo
 
-Alternatively, contracts should be integrated into the [Smart Contract Monorepo](https://github.com/uniswap/contracts) to be deployed via the deployer cli tool.
+Contracts should be integrated into the [Smart Contract Monorepo](https://github.com/uniswap/contracts) to be deployed via the deployer cli tool.
 
 ## Dependency Management
 
