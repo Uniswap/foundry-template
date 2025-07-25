@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.26;
 
-import {GasSnapshot} from 'forge-gas-snapshot/GasSnapshot.sol';
 import 'forge-std/Test.sol';
 
 import {CounterDeployer, ICounter} from './deployers/CounterDeployer.sol';
@@ -16,14 +15,15 @@ abstract contract Deployed is CounterDeployer {
     }
 }
 
-contract CounterTest_Deployed is Deployed, GasSnapshot {
+contract CounterTest_Deployed is Deployed {
     function test_IsInitialized() public view {
         assertEq(counter.number(), 10);
     }
 
+    /// forge-config: default.isolate = true
     function test_IncrementsNumber() public {
         counter.increment();
-        snapLastCall('Increment counter number');
+        vm.snapshotGasLastCall('Increment counter number');
         assertEq(counter.number(), 11);
     }
 
@@ -32,10 +32,11 @@ contract CounterTest_Deployed is Deployed, GasSnapshot {
         assertEq(counter.number(), x);
     }
 
+    /// forge-config: default.isolate = true
     function test_SetNumber_gas() public {
         uint256 x = 100;
         counter.setNumber(x);
-        snapLastCall('Set counter number');
+        vm.snapshotGasLastCall('Set counter number');
     }
 }
 
