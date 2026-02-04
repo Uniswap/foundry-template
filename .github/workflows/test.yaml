@@ -31,7 +31,8 @@ jobs:
         run: |
           echo Foundry profile: $FOUNDRY_PROFILE
           forge --version
-          forge build --sizes
+          forge build
+          forge build --sizes src/*
         id: build
 
       - name: Run Forge tests
